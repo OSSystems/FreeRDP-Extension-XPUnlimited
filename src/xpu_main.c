@@ -49,6 +49,9 @@ xpu_init(rdpExtPlugin * plugin, rdpInst * inst)
 static int
 xpu_uninit(rdpExtPlugin * plugin, rdpInst * inst)
 {
+	DEBUG("xpu extension uninit\n");
+	free(plugin);
+
 	return 0;
 }
 
