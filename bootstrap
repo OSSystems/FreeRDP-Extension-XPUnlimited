@@ -1,0 +1,30 @@
+#!/bin/sh
+# FreeRDP - XPUnlimited Extension
+# Copyright (C) 2010 O.S. Systems Software LTDA.
+
+while [ "$*" ]; do
+	case "$1" in
+		'')
+		;;
+		tests)
+		echo "-- Enabling tests"
+		OPTIONS="$OPTIONS -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Debug"
+		;;
+		debug)
+		echo "-- Enabling debug"
+		OPTIONS="$OPTIONS -DCMAKE_BUILD_TYPE=Debug"
+		;;
+		help|--help)
+		echo "Available values are:"
+		echo -e " tests\t\tEnable testing support"
+		echo -e " debug\t\tEnable debugging support"
+		exit 0
+		;;
+		*)
+		echo "ERROR: Wrong parameter has been passed. Use $0 help"
+		exit 1
+	esac
+	shift
+done
+
+cmake $OPTIONS .
