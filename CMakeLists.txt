@@ -2,7 +2,7 @@
 # Copyright (C) 2010 O.S. Systems Software LTDA.
 
 cmake_minimum_required(VERSION 2.6)
-project(freerdp-extension-xpunlimited)
+project(freerdp-extension-xpunlimited C)
 set(CMAKE_COLOR_MAKEFILE ON)
 
 # Include our extra modules
