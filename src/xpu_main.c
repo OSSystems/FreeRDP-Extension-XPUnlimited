@@ -28,6 +28,14 @@
 
 #include "xpu.h"
 
+#if !defined(RDPEXT_API)
+# error FreeRDP needs extension support
+#else
+# if RDPEXT_API < 1
+#  error FreeRDP extension API version 1 or later is required
+# endif
+#endif
+
 struct xpu_plugin
 {
 	rdpExtPlugin plugin;
