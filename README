@@ -1,0 +1,11 @@
+XP Unlimited protocol - Load balancing client extension
+
+Copyright (C) 2010 O.S. Systems Software LTDA.
+
+Compile
+$ ./bootstrap
+$ cmake -DCMAKE_INSTALL_PREFIX=<prefix>
+$ make
+
+Install
+# make install
