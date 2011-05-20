@@ -25,7 +25,7 @@ set(FREERDP_REQUIRED_LIBRARIES
   freerdp
   freerdpchanman
   freerdpkbd
-  freerdpgdi)
+  gdi)
 
 find_path(FREERDP_INCLUDE_DIR
           NAMES freerdp.h
