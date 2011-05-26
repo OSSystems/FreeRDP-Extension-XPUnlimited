@@ -21,6 +21,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/stat.h>
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <linux/limits.h>
@@ -262,6 +263,25 @@ xpu_read_file_into_array(FILE *fdin, struct xpu_server *servers)
 	return i;
 }
 
+static void
+xpu_create_directory()
+{
+	char dest_dir[PATH_MAX];
+	struct stat stat_data;
+	char *homedir;
+
+	homedir = getenv("HOME");
+	if (!homedir)
+	{
+		ERROR("getenv failed to retrieve home path\n");
+		return;
+	}
+
+	sprintf(dest_dir, "%s/.freerdp", homedir);
+	if (stat(dest_dir, &stat_data) == -1)
+		mkdir(dest_dir, 0777);
+}
+
 static int
 xpu_iterate_thru_file(struct xpu_server *server)
 {
@@ -317,6 +337,7 @@ xpu_prefered_server(char *rdp_server, int *rdp_port, const char *user, int xpu_p
 	pref_server.rdp_port = *rdp_port;
 	pref_server.xpu_port = xpu_port;
 
+	xpu_create_directory();
 	success = xpu_iterate_thru_file(&pref_server);
 
 	/* there is no such file or we were unable to get
