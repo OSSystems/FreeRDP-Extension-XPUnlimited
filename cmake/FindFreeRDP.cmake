@@ -22,7 +22,7 @@ macro(freerdp_add_extension NAME SOURCES)
 endmacro()
 
 set(FREERDP_REQUIRED_LIBRARIES
-  freerdp)
+  freerdp-core)
 
 find_path(FREERDP_INCLUDE_DIR
           NAMES freerdp.h
